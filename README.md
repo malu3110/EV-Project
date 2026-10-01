@@ -140,6 +140,8 @@ python scripts/download_data.py   # see below
 jupyter nbconvert --to notebook --execute --inplace notebooks/ev_adoption_india.ipynb
 ```
 
+Tested in a fresh Python 3.11 virtualenv; the notebook takes about 2 minutes on a 4-core machine (most of it is the repeated cross-validation in Section 5).
+
 `download_data.py` fetches the Kaggle files automatically if you have a [Kaggle API token](https://www.kaggle.com/docs/api). The two data.gov.in files and the IEA file must be downloaded from the linked pages; the script prints the links and the exact filenames to save under `data/external/`. It then checks every file against the SHA-256 of the version this analysis used, and warns if a source has changed since.
 
 To rebuild the anonymised survey file, place the raw export at `data/raw/EV Adoption Survey (Responses).xlsx` and run `python scripts/anonymise_survey.py`. Small localities named by respondents are mapped by a private `data/raw/location_overrides.json`, which is also not published; without it they fall into "Unclear".
