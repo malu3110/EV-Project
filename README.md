@@ -2,7 +2,7 @@
 
 MS capstone project (MS in Data Science and Management, IIM Indore + IIT Indore), January–June 2025. Solo project, revised for publication.
 
-**Notebook:** [`notebooks/ev_adoption_india.ipynb`](notebooks/ev_adoption_india.ipynb) · **Executive summary:** [`docs/executive_summary.pdf`](docs/executive_summary.pdf)
+**Notebook:** [`notebooks/ev_adoption_india.ipynb`](notebooks/ev_adoption_india.ipynb) · **Executive summary:** [read online](https://malu3110.github.io/EV-Project/executive_summary.html) · [PDF](docs/executive_summary.pdf)
 
 ## The problem
 
@@ -130,6 +130,7 @@ If you reuse results derived from these datasets, attribute the original publish
 │   ├── anonymise_survey.py             # raw survey -> anonymised CSV
 │   └── export_figures.py               # notebook figures -> docs/figures/
 ├── docs/
+│   ├── index.html, .nojekyll           # GitHub Pages site (served from /docs)
 │   ├── executive_summary.pdf / .html   # two-page business summary
 │   ├── interview_notes.md              # talking points
 │   └── figures/
