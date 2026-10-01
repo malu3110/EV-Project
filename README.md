@@ -30,14 +30,14 @@ The original project loaded 11 files. Five were loaded but never used in any ana
 - **Survey.** The headline analysis covers the 125 respondents who are Indian residents *and* live in India. Every share is reported with a 95% Wilson confidence interval. Bivariate associations use chi-square tests with Holm correction. Purchase-intent models (logistic regression and random forest, on the same binary target and folds) are evaluated by 5-fold stratified cross-validation repeated 20 times, against a majority-class baseline, on three feature sets: full, demographic/behavioural only, and attitudes only. NRIs (n = 69) are compared separately.
 - **Market.** Annual totals cover full years only (2014–2023). State growth rates are computed only where the 2019 base is at least 1,000 vehicles. Brand concentration uses the Herfindahl–Hirschman index (HHI).
 - **Infrastructure.** One consolidated analysis: Pearson, Spearman and log–log correlation between state charging stations and 2023 registrations, after harmonising state names. K-means tiers are reported as a description only.
-- **Forecasting.** Linear and log-linear trends are each backtested (fit 2014–21, predict 2022–23) and checked against actual 2024 registrations taken from outside the dataset.
+- **Forecasting.** Linear and log-linear trends are each backtested (fit 2014–21, predict 2022–23), and their implied 2024 growth is compared with January 2024 vs January 2023, the only 2024 month in the data.
 - **Total cost of ownership.** Breakeven analysis with sensitivity tables over the price gap, annual distance and petrol cost per km.
 
 ## Findings
 
 What the evidence supports, stated no more strongly than it allows:
 
-1. **The market is large, still growing, and decelerating.** Registrations reached ~1.53M in 2023. Year-on-year growth fell from +209% (2022) to +49% (2023), and about +27% in 2024.
+1. **The market is large, still growing, and decelerating.** Registrations reached ~1.53M in 2023. Year-on-year growth fell from +209% (2022) to +49% (2023), and January 2024 was +39% on January 2023.
 2. **India's EV market is two- and three-wheelers.** They were 94% of 2023 registrations. In electric *cars*, India is far behind: about 2% of new car sales, against 18% globally (IEA). Car-only benchmarks therefore understate India's overall transition.
 3. **Adoption tracks charging infrastructure across states, but not causally.** The rank correlation is ρ ≈ 0.92, but state size confounds it and the direction of causation is unknown. States with far more EVs than their charger count would predict are e-rickshaw markets (UP, Bihar, Assam), which rely little on public charging.
 4. **44% of surveyed Indian residents say their next vehicle is likely to be an EV** (95% CI 36–53%), and **38% are undecided**.
@@ -67,7 +67,7 @@ The re-analysis found errors in the original notebook. They are corrected here, 
 | Original result | Problem | Now |
 |---|---|---|
 | EV stock CAGR: India −37.7%, USA 0.0% | The IEA filter didn't select `mode` or `powertrain`, so `.values[0]` picked an arbitrary row per year (bus in one year, car in another) | Cars only, BEV+PHEV summed: India 55.5%, USA 36.4% (2015–23) |
-| Linear forecast: 882,017 EVs in 2025 (below 2023 actual) | Fitted on January 2024 as if it were a full year | Partial year excluded. Linear and log-linear both shown, backtested and checked against actual 2024; **neither is reliable**, so no point forecast is claimed |
+| Linear forecast: 882,017 EVs in 2025 (below 2023 actual) | Fitted on January 2024 as if it were a full year | Partial year excluded. Linear and log-linear both shown and backtested; their implied 2024 growth (−28% and +106%) brackets the +39% January signal by a wide margin; **neither is reliable**, so no point forecast is claimed |
 | ARIMA(2,1,2) forecast | 5 parameters on 10 observations; the fit did not converge | Removed (explanation in notebook §8) |
 | Logistic regression "75.6% accuracy" | Single 41-row holdout; baseline was 55.6% | Repeated cross-validation, with the baseline reported |
 | "Very positive opinion" as the top driver | Close to circular | Re-run without attitudes: demographics carry no signal |
