@@ -92,6 +92,25 @@ The raw survey export is **not** published. `scripts/anonymise_survey.py` builds
 - Applies local suppression until every combination of age band, gender, India/abroad, region and employment is shared by at least 3 respondents. As a result, employment is suppressed in 50 rows, region in 40 and age band in 14.
 - Shuffles rows and assigns random IDs.
 
+## License
+
+The **code** in this repository (the notebook's code cells and everything in `scripts/`) is released under the [MIT License](LICENSE).
+
+The MIT License does **not** cover the data. The anonymised survey file and the written documents in `docs/` are my own work and are not licensed for reuse beyond viewing.
+
+## Data terms
+
+The third-party datasets are not mine to license, and they are **not redistributed** here: `scripts/download_data.py` fetches them from their sources. Their terms are set by their publishers, and anyone using them must follow those terms. The table below records what I could and could not confirm when preparing this repository. **Check each source page before reusing the data.**
+
+| Source | Terms as published by the source | Confirmed? |
+|---|---|---|
+| [Kaggle: mafzal19](https://www.kaggle.com/datasets/mafzal19/electric-vehicle-sales-by-state-in-india) | Search listings show CC0 (public domain). The Kaggle page describes the data as scraped from the Clean Mobility Shift website, whose own terms are unknown. | No; source page not reachable at time of checking |
+| [Kaggle: srinrealyf](https://www.kaggle.com/datasets/srinrealyf/india-ev-market-data) | No licence found | No |
+| [data.gov.in](https://www.data.gov.in/) (two Rajya Sabha answer datasets) | Published on the Open Government Data Platform India under the National Data Sharing and Accessibility Policy; see the platform's terms of use. | No; resource pages not reachable at time of checking |
+| [IEA Global EV Outlook 2024 data](https://www.iea.org/data-and-statistics/data-product/global-ev-outlook-2024) | Search listings show CC BY 4.0 (reuse with attribution). | No; source page not reachable at time of checking |
+
+If you reuse results derived from these datasets, attribute the original publishers as linked above.
+
 ## Repository layout
 
 ```
@@ -108,6 +127,7 @@ The raw survey export is **not** published. `scripts/anonymise_survey.py` builds
 │   ├── executive_summary.pdf / .html   # two-page business summary
 │   ├── interview_notes.md              # talking points
 │   └── figures/
+├── LICENSE                             # MIT, code only
 └── requirements.txt
 ```
 
