@@ -12,6 +12,16 @@ India's EV registrations grew from about 2,400 in 2014 to 1.5 million in 2023, y
 2. **Consumers:** Among people living in India, how many intend to buy an EV next, what holds them back, and what distinguishes those who intend to buy?
 3. **Economics:** Under what conditions does an electric car cost less to own than a petrol car?
 
+## At a glance
+
+<p align="center"><img src="docs/figures/barriers_motivators.png" width="100%" alt="Share of Indian-resident respondents citing each concern and motivator, with 95% confidence intervals"></p>
+
+*Charging infrastructure, upfront cost and battery cost are each cited by about half of the 125 Indian-resident respondents; their confidence intervals overlap, so they cannot be ranked.*
+
+<p align="center"><img src="docs/figures/chargers_vs_registrations.png" width="75%" alt="EV registrations in 2023 against operational public charging stations by state, log–log scale"></p>
+
+*States with more public chargers have more EV registrations (rank correlation 0.92), but bigger states have more of both, so this is an association, not evidence that chargers drive adoption.*
+
 ## Data
 
 | Dataset | Source | Role |
@@ -48,10 +58,6 @@ What the evidence supports, stated no more strongly than it allows:
 6. **Demographics do not predict purchase intent in this sample.** Demographic-only models score ROC AUC ≈ 0.51, no better than chance. All of the predictive signal comes from overall opinion and familiarity, which are close to restating intent.
 7. **NRIs and residents show the same intent** (48% vs 44%, Fisher p = 0.65).
 8. **EV vs petrol-car economics turn on usage and the price gap.** Under the stated assumptions (₹4L price gap, 12,000 km/yr), the EV breaks even after about 5.2 years. At 20,000 km/yr it breaks even after about 3.2 years. At 12,000 km/yr it pays back within 5 years whenever the gap is below ~₹3.9L.
-
-<p align="center">
-  <img src="docs/figures/barriers_motivators.png" width="85%" alt="Concerns and motivators with 95% confidence intervals">
-</p>
 
 ## Limitations
 
