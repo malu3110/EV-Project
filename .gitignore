@@ -2,6 +2,9 @@
 # timestamps). They are never committed; only the anonymised derivative is.
 data/raw/
 
+# Third-party datasets are fetched by scripts/download_data.py, not redistributed.
+data/external/
+
 .ipynb_checkpoints/
 __pycache__/
 *.pyc

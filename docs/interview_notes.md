@@ -10,7 +10,7 @@ Talking points for discussing this project. Every number here is reproduced by t
 
 | Claim | Number | Why it holds |
 |---|---|---|
-| Market size and trajectory | 2,392 (2014) → 1.53M (2023); YoY +209% → +49% → ~+27% (2024) | Registration file matches Rajya Sabha figures within 0.1% per financial year |
+| Market size and trajectory | 2,392 (2014) → 1.53M (2023); YoY +209% (2022) → +49% (2023); Jan 2024 +39% vs Jan 2023 | Registration file matches Rajya Sabha figures within 0.1% per financial year |
 | Segment mix | 2W + 3W = 94% of 2023 registrations; cars 5% | Direct count |
 | India behind in *cars* | ~2% EV share of new car sales vs 18% world (2023) | IEA, cars only |
 | Car-stock growth | India 55.5% CAGR 2015–23 (USA 36%, world 54%), but from 4,400 cars | Fixed IEA filter |
@@ -31,7 +31,7 @@ It was a single 41-row holdout against a 55.6% majority baseline, and its top pr
 The original comparison was 39% vs 75.6%, but those were different problems: a 5-class target against a binary one. On the same target, folds and features, the two are within noise of each other (0.69 vs 0.64 accuracy, ±0.08–0.09). With 125 rows, model choice is not the bottleneck; signal is.
 
 **"What's your forecast for 2025?"**
-I don't present one. A linear fit is the wrong shape. A log-linear fit backtests well but assumes 87% growth a year, and actual 2024 came in about 60% below its prediction. Ten annual points can't separate exponential growth from an S-curve that is levelling off. I'd want monthly data, a saturation model, and policy variables (FAME-II ended in March 2024) before forecasting. I removed the ARIMA because it had five parameters on ten observations and didn't converge.
+I don't present one. A linear fit is the wrong shape. A log-linear fit backtests well but assumes 87% growth a year, which implies +106% in 2024. Growth had already slowed to +49% in 2023, and January 2024 ran +39% on January 2023. One month is a weak signal, but it points the same way. Ten annual points can't separate exponential growth from an S-curve that is levelling off. I'd want monthly data, a saturation model, and policy variables such as subsidy changes before forecasting. I removed the ARIMA because it had five parameters on ten observations and didn't converge.
 
 **"Does charging infrastructure drive adoption?"**
 The data can't say. States with more chargers have more EVs, but bigger states have more of everything, and chargers follow demand as much as they create it. One interesting pattern: states with far more EVs than their charger count predicts (UP, Bihar, Assam) are e-rickshaw markets, where vehicles charge at depots or at home.
@@ -51,6 +51,6 @@ The raw responses stay private. I published a derived file with timestamps and f
 ## What this project shows about how I work
 
 - I audit my own work and withdraw conclusions that don't hold, rather than defending them.
-- I check data against independent sources: Rajya Sabha totals, and actual 2024 figures for the forecast.
+- I cross-check data across sources (the registration file against Rajya Sabha totals) and test models against data they weren't fitted on (backtests).
 - I report uncertainty (confidence intervals, CV spread, baselines) alongside every estimate.
 - I treat respondent privacy as a design constraint, not an afterthought.
