@@ -17,13 +17,16 @@ India's EV registrations grew from about 2,400 in 2014 to 1.5 million in 2023, y
 | Dataset | Source | Role |
 |---|---|---|
 | Consumer survey (`data/survey_anonymised.csv`) | My own survey: 28 questions, Google Forms, June 2025; 204 usable responses | Intent, barriers, motivators |
-| State × month EV registrations, 2014 – Jan 2024 | Vahan-derived (Kaggle) | Trends, segments, states |
-| EV registrations by manufacturer, 2015–2024 | Vahan-derived | Brand concentration |
-| Operational public charging stations by state | Ministry of Power figures | Infrastructure vs adoption |
-| Rajya Sabha answers (Session 259 Q3475; Session 265 Q1355) | Parliament of India | Cross-checks of national and state figures |
-| Global EV Outlook 2024 data | IEA | International benchmark |
+| EV registrations by state × month × vehicle class, 2014 – Jan 2024 | [Kaggle: mafzal19](https://www.kaggle.com/datasets/mafzal19/electric-vehicle-sales-by-state-in-india) (described there as scraped from Clean Mobility Shift) | Trends, segments, states |
+| EV registrations by manufacturer, 2015–2024 | [Kaggle: srinrealyf](https://www.kaggle.com/datasets/srinrealyf/india-ev-market-data) (upstream source not stated) | Brand concentration |
+| Operational public charging stations by state | [Kaggle: srinrealyf](https://www.kaggle.com/datasets/srinrealyf/india-ev-market-data) (upstream source and date not stated) | Infrastructure vs adoption |
+| Registered EVs by financial year, FY20–FY24 | [data.gov.in](https://www.data.gov.in/resource/year-wise-number-registered-electric-vehicles-e-vahan-portal-2019-20-2023-24) (Rajya Sabha Session 265, USQ 1355) | Cross-check of national totals |
+| Registered EVs by state, as on 6 March 2023 | [data.gov.in](https://www.data.gov.in/resource/stateut-wise-details-registered-electric-vehicles-india-e-vahan-portal-ministry-road) (Rajya Sabha Session 259, USQ 3475) | Cross-check of state ranking |
+| Global EV Outlook 2024 data | [IEA](https://www.iea.org/data-and-statistics/data-product/global-ev-outlook-2024) | International benchmark |
 
-The original project loaded 11 files. Five were loaded but never used in any analysis, and one appears to be synthetic. `data/public/` keeps every file for transparency, and the notebook's Section 1 explains which are used and why.
+**Only the survey file is included in this repository.** The other six are fetched by `scripts/download_data.py` (see [Running it](#running-it) and [Data terms](#data-terms)).
+
+The original project loaded 11 files. Five were loaded but never used in any analysis, and one appears to be synthetic. The notebook's Section 1 lists which files are used and why.
 
 ## Method
 
@@ -56,7 +59,7 @@ What the evidence supports, stated no more strongly than it allows:
 - **Self-reported intent.** Stated intent to buy usually overstates actual purchases.
 - **Small n.** With 125 Indian residents, a share has an uncertainty of about ±9 points, and subgroup differences under ~20 points cannot be reliably detected.
 - **No causal claims.** Every relationship reported is an association.
-- **Data gaps.** Telangana is missing from the registration data. The charger data has no snapshot date. The IEA data excludes two- and three-wheelers.
+- **Data gaps.** Telangana is missing from the registration data. The charger data has no stated source or snapshot date. The IEA data excludes two- and three-wheelers.
 - **TCO is illustrative.** Resale value, battery replacement, insurance, financing and discounting are not modelled.
 - **Anonymisation costs some detail.** See below.
 
@@ -95,9 +98,12 @@ The raw survey export is **not** published. `scripts/anonymise_survey.py` builds
 ├── notebooks/ev_adoption_india.ipynb   # the analysis, executed, with narrative
 ├── data/
 │   ├── survey_anonymised.csv           # published survey data
-│   ├── public/                         # public datasets (as downloaded)
+│   ├── external/                       # gitignored: third-party data, fetched by download_data.py
 │   └── raw/                            # gitignored: raw survey export
-├── scripts/anonymise_survey.py         # raw survey -> anonymised CSV
+├── scripts/
+│   ├── download_data.py                # fetch + checksum-verify third-party data
+│   ├── anonymise_survey.py             # raw survey -> anonymised CSV
+│   └── export_figures.py               # notebook figures -> docs/figures/
 ├── docs/
 │   ├── executive_summary.pdf / .html   # two-page business summary
 │   ├── interview_notes.md              # talking points
@@ -110,7 +116,10 @@ The raw survey export is **not** published. `scripts/anonymise_survey.py` builds
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
+python scripts/download_data.py   # see below
 jupyter nbconvert --to notebook --execute --inplace notebooks/ev_adoption_india.ipynb
 ```
 
-The notebook runs from the published files alone. To rebuild the anonymised survey file, place the raw export at `data/raw/EV Adoption Survey (Responses).xlsx` and run `python scripts/anonymise_survey.py`. Small localities named by respondents are mapped by a private `data/raw/location_overrides.json`, which is also not published; without it they fall into "Unclear".
+`download_data.py` fetches the Kaggle files automatically if you have a [Kaggle API token](https://www.kaggle.com/docs/api). The two data.gov.in files and the IEA file must be downloaded from the linked pages; the script prints the links and the exact filenames to save under `data/external/`. It then checks every file against the SHA-256 of the version this analysis used, and warns if a source has changed since.
+
+To rebuild the anonymised survey file, place the raw export at `data/raw/EV Adoption Survey (Responses).xlsx` and run `python scripts/anonymise_survey.py`. Small localities named by respondents are mapped by a private `data/raw/location_overrides.json`, which is also not published; without it they fall into "Unclear".
