@@ -1,0 +1,9 @@
+# Raw survey responses contain respondent-level free text (locations,
+# timestamps). They are never committed; only the anonymised derivative is.
+data/raw/
+
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
