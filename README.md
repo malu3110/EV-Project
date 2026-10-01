@@ -42,7 +42,7 @@ The original project loaded 11 files. Five were loaded but never used in any ana
 
 - **Survey.** The headline analysis covers the 125 respondents who are Indian residents *and* live in India. Every share is reported with a 95% Wilson confidence interval. Bivariate associations use chi-square tests with Holm correction. Purchase-intent models (logistic regression and random forest, on the same binary target and folds) are evaluated by 5-fold stratified cross-validation repeated 20 times, against a majority-class baseline, on three feature sets: full, demographic/behavioural only, and attitudes only. NRIs (n = 69) are compared separately.
 - **Market.** Annual totals cover full years only (2014–2023). State growth rates are computed only where the 2019 base is at least 1,000 vehicles. Brand concentration uses the Herfindahl–Hirschman index (HHI).
-- **Infrastructure.** One consolidated analysis: Pearson, Spearman and log–log correlation between state charging stations and 2023 registrations, after harmonising state names. K-means tiers are reported as a description only.
+- **Infrastructure.** One consolidated analysis: Pearson, Spearman and log–log correlation between state charging stations and 2023 registrations, after harmonising state names.
 - **Forecasting.** Linear and log-linear trends are each backtested (fit 2014–21, predict 2022–23), and their implied 2024 growth is compared with January 2024 vs January 2023, the only 2024 month in the data.
 - **Total cost of ownership.** Breakeven analysis with sensitivity tables over the price gap, annual distance and petrol cost per km.
 
@@ -83,7 +83,7 @@ The re-analysis found errors in the original notebook. They are corrected here, 
 | RandomForest 39% vs LR 75.6% | 5-class vs binary target; not comparable | Same target, features and folds: the models are equivalent |
 | "EV costs ₹34,000 more over 5 years" | Maintenance defined but unused; result driven by the assumed price gap | Breakeven and sensitivity analysis |
 | NRIs and foreign residents in the headline numbers | Mixed markets | Indian residents living in India only; NRIs compared separately |
-| Charging regression ×3, clustering ×2, merge ×2 | Duplication; merge silently dropped mismatched state names; missing stations zero-filled | One pass, names harmonised, no zero-filling |
+| Charging regression ×3, clustering ×2, merge ×2 | Duplication; merge silently dropped mismatched state names; missing stations zero-filled | One pass, names harmonised, no zero-filling. Clustering removed: its three tiers were exactly three ranges of 2023 sales |
 | "4W" brand chart empty | Dataset labels cars `LMV` | Fixed |
 | Ladakh "infinite" CAGR at the top of the state ranking | Growth from a base of zero | Only states with a 2019 base ≥ 1,000 are ranked |
 
